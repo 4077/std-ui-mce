@@ -69,9 +69,9 @@ class Main extends \Controller
         'min'  => [
             'menubar'  => false,
             'plugins'  => [
-                'save autosave'
+                'save autosave code'
             ],
-            'toolbar1' => 'save cancel | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'
+            'toolbar1' => 'save cancel | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code'
         ],
         'full' => [
             'menubar'      => true,
