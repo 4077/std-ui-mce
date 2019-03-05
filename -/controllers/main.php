@@ -71,7 +71,7 @@ class Main extends \Controller
             'plugins'  => [
                 'save autosave'
             ],
-            'toolbar1' => 'save cancel | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify'
+            'toolbar1' => 'save cancel | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'
         ],
         'full' => [
             'menubar'      => true,
