@@ -4,27 +4,29 @@ var __nodeNs__ = "std_ui_mce";
 // }
 
 (function (__nodeNs__, __nodeId__) {
-    $.widget(__nodeNs__ + "." + __nodeId__, {
+    $.widget(__nodeNs__ + "." + __nodeId__, $.ewma.node, {
         options: {},
 
-        _create: function () {
-            this.bind();
-        },
+        __create: function () {
+            var w = this;
 
-        _destroy: function () {
-
-        },
-
-        _setOption: function (key, value) {
-            $.Widget.prototype._setOption.apply(this, arguments);
+            w.bind();
         },
 
         bind: function () {
-            var widget = this;
+            var w = this;
+            var o = w.options;
+            var $w = w.element;
 
             var editorOptions = {
                 setup: function (editor) {
                     editor.on('change', function (e) {
+                        //tinymce.triggerSave();
+                        //console.log('change event', e);
+                    });
+
+                    editor.on('keydown keyup', function (e) {
+                        e.stopPropagation();
                         //tinymce.triggerSave();
                         //console.log('change event', e);
                     });
@@ -33,20 +35,20 @@ var __nodeNs__ = "std_ui_mce";
                 save_onsavecallback: function (editor) {
                     var requestData = {};
 
-                    $.extend(requestData, widget.options.requestData);
+                    $.extend(requestData, o.requestData);
                     $.extend(requestData, {
                         value: editor.getContent()
                     });
 
-                    request(widget.options.requestPath, requestData);
+                    request(w.options.requestPath, requestData);
 
                     editor.hide();
                 }
             };
 
-            $.extend(editorOptions, widget.options.editorOptions);
+            $.extend(editorOptions, o.editorOptions);
 
-            tinymce.baseURL = widget.options.baseURL;
+            tinymce.baseURL = o.baseURL;
             tinymce.suffix = ".min";
 
             tinymce.init(editorOptions);
