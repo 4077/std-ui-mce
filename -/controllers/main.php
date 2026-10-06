@@ -89,7 +89,7 @@ class Main extends \Controller
 
     private function getEditorPreset($preset)
     {
-        return $this->presets[$preset] ?? $this->presets['min'];
+        return $this->presets[(string)$preset] ?? $this->presets['min'];
     }
 
     private function getEditorHardOptions()
